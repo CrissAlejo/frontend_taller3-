@@ -7,11 +7,15 @@ import { EmpleadoComponent } from './components/empleado/empleado.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { EmpleadoService } from './services/empleado.service';
+import { EmployeeFormComponent } from './components/employee-form/employee-form.component';
+import { EmployeeListComponent } from './components/employee-list/employee-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EmpleadoComponent
+    EmpleadoComponent,
+    EmployeeFormComponent,
+    EmployeeListComponent
   ],
   imports: [
     BrowserModule,

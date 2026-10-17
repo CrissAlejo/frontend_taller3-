@@ -1,43 +1,12 @@
+<div class="alert alert-danger" role="alert" *ngIf="error$ | async as error">{{ error }}</div>
+<p role="status" *ngIf="loading$ | async">Procesando...</p>
 <div class="row">
-    <div class="col-md-4">
-    <div class="card">
-    <div class="card-body">
-<h1>Registro de Nuevo Empleado</h1>
-        <form #empleadoForm="ngForm" (ngSubmit)="addEmpleado(empleadoForm)"> 
-           <div class="form-group"> 
-                <input type="text" class="form-control" name="nombre" placeholder="Ingrese su nombre" [(ngModel)]="empleadoService.selectedEmpleado.nombre"> 
-            </div> 
-            <div class="form-group"> <input type="text" name="cargo" class="form-control" placeholder="Ingrese su cargo" [(ngModel)]="empleadoService.selectedEmpleado.cargo"> 
-            </div> 
-            <div class="form-group"> <input type="text" name="departamento" class="form-control" placeholder="Ingrese su departamento" [(ngModel)]="empleadoService.selectedEmpleado.departamento"> 
-            </div> 
-            <div class="form-group"> <input type="number" name="sueldo" class="form-control" placeholder="Ingrese su sueldo" [(ngModel)]="empleadoService.selectedEmpleado.sueldo"> 
-            </div> 
-            <button class="btn btn-primary">Crear</button> 
-            <button class="btn btn-secondary">Eliminar</button> 
-        </form>
-    </div>
-    </div>
-    </div>
-    <div class="col-md-8">
-    <table class="table table-striped">
-    <thead>
-    <tr><th>Nombre</th>
-    <th>Cargo</th>
-    <th>Departamento</th>
-    <th>Operaciones</th></tr>
-    </thead>
-    <tbody>
-        <tbody>
-            <tr *ngFor="let empleado of empleadoService.empleados">
-            <td>{{empleado.nombre}}</td>
-            <td>{{empleado.cargo}}</td>
-            <td>{{empleado.departamento}}</td>
-            <td><button class="btn btn-secondary">Actualizar</button>
-            <button class="btn btn-danger">Eliminar</button>
-            </td>
-            </tr>
-        </tbody>
-    
-    </table>
-    </div>
+  <div class="col-md-4">
+    <app-employee-form [employee]="selected" [resetVersion]="formVersion" [busy]="(loading$ | async) ?? false"
+      (save)="save($event)" (cancel)="cancel()"></app-employee-form>
+  </div>
+  <div class="col-md-8">
+    <app-employee-list [employees]="(employees$ | async) ?? []" [busy]="(loading$ | async) ?? false"
+      (edit)="selected = $event" (remove)="remove($event)"></app-employee-list>
+  </div>
+</div>
