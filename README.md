@@ -1,5 +1,15 @@
 # Frontend
 
+La URL del backend se configura en `.env` (ver `.env.example`):
+
+```env
+API_URL=http://localhost:3000/api
+```
+
+`npm start` y `npm run build` cargan esa URL antes de ejecutar Angular.
+Tras cambiarla, reinicia el servidor o vuelve a compilar y desplegar.
+Esta URL queda visible en el navegador; no coloques secretos en ella.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.0.
 
 ## Development server

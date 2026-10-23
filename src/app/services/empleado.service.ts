@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable, defer, catchError, finalize, map, tap, throwError } from 'rxjs';
 import { ApiResponse, Empleado, EmployeeInput } from '../models/empleado';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class EmployeeService {
-  private readonly url = 'http://localhost:3000/api/empleados';
+  private readonly url = `${environment.apiUrl}/empleados`;
   private readonly employeesSubject = new BehaviorSubject<readonly Empleado[]>(Object.freeze([]));
   private readonly errorSubject = new BehaviorSubject<string | null>(null);
   private readonly loadingSubject = new BehaviorSubject(false);

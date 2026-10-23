@@ -1,4 +1,6 @@
+import { apiUrl } from './api.generated';
+
 export const environment = {
   production: true,
-  apiUrl: 'https://azurewebsites.net' // URL simulada del backend
+  apiUrl,
 };

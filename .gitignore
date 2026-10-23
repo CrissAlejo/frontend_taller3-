@@ -2,11 +2,17 @@
 
 # Compiled output
 /dist
+/.firebase/
+firebase-debug.log*
 /tmp
 /out-tsc
 /bazel-out
 
 # Node
+.env
+.env.*
+!.env.example
+/src/environments/api.generated.ts
 /node_modules
 npm-debug.log
 yarn-error.log
