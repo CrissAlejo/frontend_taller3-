@@ -1,0 +1,4 @@
+<main class="container mt-5">
+  <div *ngIf="errorMessage" class="alert alert-danger" role="alert">{{ errorMessage }}</div>
+  <app-login-form [isLoading]="loading" (submitLogin)="onExecuteLogin($event)"></app-login-form>
+</main>

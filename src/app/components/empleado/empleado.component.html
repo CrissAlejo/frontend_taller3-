@@ -1,12 +1,17 @@
-<div class="alert alert-danger" role="alert" *ngIf="error$ | async as error">{{ error }}</div>
-<p role="status" *ngIf="loading$ | async">Procesando...</p>
-<div class="row">
-  <div class="col-md-4">
-    <app-employee-form [employee]="selected" [resetVersion]="formVersion" [busy]="(loading$ | async) ?? false"
-      (save)="save($event)" (cancel)="cancel()"></app-employee-form>
-  </div>
-  <div class="col-md-8">
-    <app-employee-list [employees]="(employees$ | async) ?? []" [busy]="(loading$ | async) ?? false"
-      (edit)="selected = $event" (remove)="remove($event)"></app-employee-list>
-  </div>
-</div>
+﻿<main class="container">
+  <header class="section">
+    <h4>Gestión de empleados</h4>
+    <p class="grey-text text-darken-1">Registra, consulta y actualiza los datos de tu equipo.</p>
+  </header>
+  <div class="card-panel red lighten-5 red-text text-darken-4" role="alert" *ngIf="error$ | async as error">{{ error }}</div>
+  <p role="status" *ngIf="loading$ | async">Procesando...</p>
+  <app-employee-form [employee]="selected" [resetVersion]="formVersion" [busy]="(loading$ | async) ?? false"
+    (save)="save($event)" (cancel)="cancel()"></app-employee-form>
+  <section class="card">
+    <div class="card-content">
+      <h2 class="card-title">Empleados registrados</h2>
+      <app-employee-list [employees]="(employees$ | async) ?? []" [busy]="(loading$ | async) ?? false"
+        (edit)="selected = $event" (remove)="remove($event)"></app-employee-list>
+    </div>
+  </section>
+</main>

@@ -50,7 +50,7 @@ export class EmployeeService {
         }),
         catchError((error: unknown) => {
           const message = error instanceof HttpErrorResponse
-            ? (error.status === 0 ? 'No se pudo conectar con el servidor' : error.error?.message ?? 'No se pudo completar la operacion')
+            ? (error.status === 0 ? 'No se pudo conectar con el servidor' : error.error?.error?.message ?? error.error?.message ?? 'No se pudo completar la operacion')
             : (error instanceof Error ? error.message : 'Error inesperado');
           this.errorSubject.next(message);
           return throwError(() => error);

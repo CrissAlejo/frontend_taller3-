@@ -2,6 +2,7 @@
 
 # Compiled output
 /dist
+/.tmp-pdf/
 /.firebase/
 firebase-debug.log*
 /tmp

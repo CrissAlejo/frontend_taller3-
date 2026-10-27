@@ -1,1 +1,11 @@
-<app-empleado></app-empleado>
+﻿<header *ngIf="auth.currentUser$ | async as user" class="teal darken-3 white-text">
+  <div class="container section">
+    <div class="row">
+      <div class="col s12 m8"><strong>Personal</strong> · {{ user.email }} · {{ user.rol }}</div>
+      <div class="col s12 m4 right-align">
+        <button type="button" class="btn-small waves-effect white teal-text text-darken-3" (click)="logout()">Cerrar sesión</button>
+      </div>
+    </div>
+  </div>
+</header>
+<router-outlet></router-outlet>

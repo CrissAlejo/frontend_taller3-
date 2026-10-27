@@ -1,11 +1,22 @@
-<table class="table table-striped">
-  <thead><tr><th>Nombre</th><th>Cargo</th><th>Departamento</th><th>Sueldo</th><th>Operaciones</th></tr></thead>
+﻿<table class="striped highlight responsive-table">
+  <thead><tr><th scope="col">Nombre</th><th scope="col">Cargo</th><th scope="col">Departamento</th><th scope="col">Sueldo</th><th scope="col">Operaciones</th></tr></thead>
   <tbody>
-    <tr *ngFor="let employee of employees; trackBy: trackById">
+    <tr *ngFor="let employee of visibleEmployees; trackBy: trackById">
       <td>{{ employee.nombre }}</td><td>{{ employee.cargo }}</td><td>{{ employee.departamento }}</td><td>{{ employee.sueldo | number:'1.2-2' }}</td>
-      <td><button type="button" class="btn btn-secondary" [disabled]="busy" (click)="edit.emit(employee)">Actualizar</button>
-        <button type="button" class="btn btn-danger" [disabled]="busy" (click)="remove.emit(employee)">Eliminar</button></td>
+      <td><button type="button" class="btn-small waves-effect teal" [disabled]="busy" (click)="edit.emit(employee)">Editar</button>
+        <button type="button" class="btn-small waves-effect red darken-2" [disabled]="busy" (click)="remove.emit(employee)">Eliminar</button></td>
     </tr>
-    <tr *ngIf="!employees.length"><td colspan="5">No hay empleados registrados.</td></tr>
+    <tr *ngIf="!employees.length"><td colspan="5" class="center-align grey-text">No hay empleados registrados.</td></tr>
   </tbody>
 </table>
+<div class="section" *ngIf="employees.length">
+  <p class="grey-text text-darken-1" role="status" aria-live="polite">
+    Mostrando {{ firstItem }}–{{ lastItem }} de {{ employees.length }} empleados · Página {{ page }} de {{ totalPages }}
+  </p>
+  <div role="group" aria-label="Paginación de empleados">
+    <button type="button" class="btn-flat waves-effect" [disabled]="busy || page === 1" (click)="goToPage(1)">Primera</button>
+    <button type="button" class="btn-small waves-effect teal" [disabled]="busy || page === 1" (click)="goToPage(page - 1)">Anterior</button>
+    <button type="button" class="btn-small waves-effect teal" [disabled]="busy || page === totalPages" (click)="goToPage(page + 1)">Siguiente</button>
+    <button type="button" class="btn-flat waves-effect" [disabled]="busy || page === totalPages" (click)="goToPage(totalPages)">Última</button>
+  </div>
+</div>

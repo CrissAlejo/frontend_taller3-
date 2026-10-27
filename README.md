@@ -1,5 +1,23 @@
 # Frontend
 
+## Actividad PDA05: autenticación JWT
+
+El frontend usa `POST ${API_URL}/auth/login` con `{ email, password }` y espera
+`{ success: true, data: { token, user: { email, rol } } }`, según el backend existente.
+No se modificó el backend.
+
+- `/auth`: formulario de acceso con validación y mensajes del backend.
+- `/employees`: CRUD protegido por un guard; sin sesión redirige a `/auth`.
+- `AuthService`: sesión reactiva y persistencia en `localStorage`, compatible con SSR.
+- Interceptor: añade `Authorization: Bearer` solo a esta API; ante 401/403
+  limpia la sesión y regresa a `/auth`.
+- El botón «Cerrar sesión» elimina los datos de sesión y vuelve al login.
+
+Para probar, inicia el backend y ejecuta `npm start`. Entra directamente a
+`/employees` sin sesión, verifica la redirección y accede con un usuario ya creado
+en tu backend. Después prueba el CRUD, recarga la página y cierra la sesión.
+Las pruebas automatizadas se ejecutan con `npm test -- --watch=false --browsers=ChromeHeadless`.
+
 La URL del backend se configura en `.env` (ver `.env.example`):
 
 ```env
